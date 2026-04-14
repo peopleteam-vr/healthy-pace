@@ -1,5 +1,6 @@
 const ROOT_FOLDER_ID = '17D005J0I1pscOu1RCzOOu_R9Cyf4i7bt';
-const GEMINI_API_KEY = 'AIzaSyDaxKGj8qOEWGqefYhBawQlvQQ8XEUSe1s';
+// 從 Google 專案設定中安全地讀取 Key
+const GEMINI_API_KEY = PropertiesService.getScriptProperties().getProperty('GEMINI_API_KEY');
 
 // ★ 模型降級清單（5個輪流，遇到忙碌自動切換）
 const GEMINI_MODELS = [
