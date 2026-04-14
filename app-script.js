@@ -25,15 +25,13 @@ function getOrCreateUserFolder(monthStr, userName) {
   var root = DriveApp.getFolderById(ROOT_FOLDER_ID);
   var monthPrefix = monthStr.replace('-', '');
 
-  var monthFolder = null;
-  var folders = root.getFolders();
-  while (folders.hasNext()) {
-    var f = folders.next();
-    if (f.getName().startsWith(monthPrefix)) {
-      monthFolder = f;
-      break;
-    }
-  }
+var monthFolder = null;
+var query = "title = '" + monthPrefix + "' and mimeType = 'application/vnd.google-apps.folder' and trashed = false";
+var folders = root.searchFolders(query);
+
+if (folders.hasNext()) {
+  monthFolder = folders.next();
+}
   if (!monthFolder) {
     monthFolder = root.createFolder(monthPrefix);
   }
